@@ -31,9 +31,9 @@ export default function Home() {
             <Image
               src="/images/logo.png"
               alt="Serenity Logo"
-              width={80}
-              height={80}
-              className="mx-auto mb-6"
+              width={120}
+              height={120}
+              className="mx-auto mb-6 mix-blend-multiply"
             />
             <h1 className="font-headline text-4xl md:text-6xl font-bold tracking-tight text-foreground">
               Temukan makanan Anda berikutnya dengan Serenity
