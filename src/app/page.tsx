@@ -206,19 +206,19 @@ export default function Home() {
                   {
                     title: "Diskon Pengguna Baru 50%",
                     desc: "Pesan sekarang dan dapatkan potongan setengah harga!",
-                    img: "https://placehold.co/1200x500.png",
+                    img: "/images/promo1.png",
                     hint: "special offer",
                   },
                   {
                     title: "Gratis Ongkir Tanpa Batas",
                     desc: "Nikmati pengiriman gratis ke mana saja, kapan saja.",
-                    img: "https://placehold.co/1200x500.png",
+                    img: "/images/promo2.png",
                     hint: "delivery bike",
                   },
                   {
                     title: "Cashback Hingga 20%",
                     desc: "Dapatkan cashback instan untuk setiap pesananmu.",
-                    img: "https://placehold.co/1200x500.png",
+                    img: "/images/promo3.png",
                     hint: "money wallet",
                   },
                 ].map((promo, index) => (
