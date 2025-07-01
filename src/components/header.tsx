@@ -16,7 +16,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center px-4">
         <Link href="/" className="mr-6 flex items-center space-x-2">
-          <Image src="/images/logo.png" alt="Serenity Logo" width={32} height={32} className="h-6 w-6 object-contain" />
+          <Image src="/images/logo.png" alt="Serenity Logo" width={40} height={40} className="h-8 w-8 object-contain mix-blend-multiply" />
           <span className="font-bold font-headline text-lg">Serenity</span>
         </Link>
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
@@ -47,7 +47,7 @@ export default function Header() {
             <SheetContent side="left">
               <div className="grid gap-4 py-6">
                 <Link href="/" className="mb-4 flex items-center space-x-2">
-                  <Image src="/images/logo.png" alt="Serenity Logo" width={32} height={32} className="h-6 w-6 object-contain" />
+                  <Image src="/images/logo.png" alt="Serenity Logo" width={40} height={40} className="h-8 w-8 object-contain mix-blend-multiply" />
                   <span className="font-bold font-headline text-lg">Serenity</span>
                 </Link>
                 {navLinks.map((link) => (
