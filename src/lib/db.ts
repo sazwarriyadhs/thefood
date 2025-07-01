@@ -1,16 +1,7 @@
 
-import { Pool } from 'pg';
+import { db } from '@vercel/postgres';
 
-// Pastikan variabel lingkungan DATABASE_URL sudah diatur di file .env Anda
-const connectionString = process.env.DATABASE_URL;
-
-if (!connectionString) {
-  throw new Error('Variabel lingkungan DATABASE_URL tidak diatur.');
-}
-
-const pool = new Pool({
-  connectionString,
-});
-
-// Mengekspor instance pool secara langsung untuk kontrol transaksi
-export default pool;
+// The 'db' object from @vercel/postgres provides a query method and a connect method
+// that are compatible with node-postgres, making it a suitable replacement.
+// It manages connections efficiently for serverless environments like Vercel.
+export default db;
