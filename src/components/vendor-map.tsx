@@ -12,7 +12,7 @@ export default function VendorMap() {
     // Mencegah peta untuk diinisialisasi ulang jika sudah ada
     if (mapRef.current && !mapInstanceRef.current) {
       // @ts-ignore: Inisialisasi peta pada elemen ref
-      mapInstanceRef.current = L.map(mapRef.current).setView([-6.25, 106.81], 11);
+      mapInstanceRef.current = L.map(mapRef.current).setView([-6.59, 106.80], 12);
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
