@@ -50,6 +50,8 @@ Based on the query, select up to 8 of the most relevant restaurants from the lis
 
 Finally, compose a friendly, single-sentence response message to the user summarizing your findings, for example "Tentu, berikut adalah beberapa restoran yang mungkin Anda sukai!" or "Saya menemukan beberapa pilihan masakan Jepang untuk Anda!".
 
+Important: All responses (both responseMessage and the suggestion reasons) must be in Bahasa Indonesia.
+
 Here is the list of available restaurants:
 {{#each restaurants}}
 - {{this.name}} ({{this.category}})
