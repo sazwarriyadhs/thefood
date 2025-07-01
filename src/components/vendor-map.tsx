@@ -11,7 +11,7 @@ export default function VendorMap() {
     // Mencegah peta untuk diinisialisasi ulang jika sudah ada
     if (mapRef.current && !mapInstanceRef.current) {
       // @ts-ignore: Inisialisasi peta pada elemen ref
-      mapInstanceRef.current = L.map(mapRef.current).setView([-6.2088, 106.8456], 12);
+      mapInstanceRef.current = L.map(mapRef.current).setView([-6.595, 106.817], 12);
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -28,10 +28,10 @@ export default function VendorMap() {
       });
 
       const vendors = [
-        { name: "The Green Leaf", position: [-6.2088, 106.8456], category: "Italian" },
-        { name: "Ocean's Catch", position: [-6.1751, 106.8650], category: "Seafood" },
-        { name: "Burger Bliss", position: [-6.2297, 106.8063], category: "American" },
-        { name: "Tokyo Nites", position: [-6.2146, 106.8451], category: "Japanese" },
+        { name: "The Green Leaf", position: [-6.598, 106.806], category: "Italian" },
+        { name: "Ocean's Catch", position: [-6.605, 106.821], category: "Seafood" },
+        { name: "Burger Bliss", position: [-6.589, 106.830], category: "American" },
+        { name: "Tokyo Nites", position: [-6.590, 106.790], category: "Japanese" },
       ];
       
       vendors.forEach(vendor => {
