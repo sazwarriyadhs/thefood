@@ -29,10 +29,33 @@ export default function VendorMap() {
       });
       
       restaurants.forEach(resto => {
+        const menuHtml = resto.menu.map(item => `
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <span>${item.name}</span>
+            <span style="font-weight: 500; white-space: nowrap; padding-left: 16px;">Rp ${item.price}</span>
+          </div>
+        `).join('');
+
+        const popupContent = `
+          <div style="font-family: sans-serif; max-width: 250px;">
+            <h3 style="font-size: 1.1rem; font-weight: 700; margin: 0 0 4px 0;">${resto.name}</h3>
+            <p style="font-size: 0.9rem; color: #6b7280; margin: 0 0 8px 0;">${resto.category}</p>
+            <hr style="border: 0; border-top: 1px solid #e5e7eb; margin: 8px 0;" />
+            <div style="font-size: 0.9rem; display: flex; flex-direction: column;">
+              ${menuHtml}
+            </div>
+            <button 
+              onclick="alert('Fungsi pesan belum diimplementasikan!')" 
+              style="margin-top: 12px; width: 100%; padding: 8px; background-color: #59B88D; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; text-align: center;"
+            >
+              Pesan Sekarang
+            </button>
+          </div>
+        `;
         // @ts-ignore: Menambahkan marker ke instance peta
         L.marker([resto.latitude, resto.longitude], { icon: defaultIcon })
           .addTo(mapInstanceRef.current)
-          .bindPopup(`<div class="font-headline font-semibold">${resto.name}</div><div>${resto.category}</div>`);
+          .bindPopup(popupContent);
       });
     }
 
