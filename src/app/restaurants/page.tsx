@@ -12,13 +12,15 @@ import { Badge } from "@/components/ui/badge";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
-const restaurants = [
+export const restaurants = [
   {
     name: "Sari Nusantara",
     address: "Jl. Jendral Sudirman No. 1, Jakarta",
     image: "https://placehold.co/600x400.png",
     hint: "nasi rames",
     category: "Masakan Indonesia",
+    latitude: -6.2088,
+    longitude: 106.8456,
     menu: [
       { name: "Nasi Goreng Spesial", price: "45.000" },
       { name: "Rendang Daging", price: "55.000" },
@@ -31,6 +33,8 @@ const restaurants = [
     image: "https://placehold.co/600x400.png",
     hint: "wood-fired pizza",
     category: "Masakan Italia",
+    latitude: -6.2622,
+    longitude: 106.8141,
     menu: [
       { name: "Margherita Pizza", price: "85.000" },
       { name: "Fettuccine Carbonara", price: "95.000" },
@@ -43,6 +47,8 @@ const restaurants = [
     image: "https://placehold.co/600x400.png",
     hint: "sushi roll",
     category: "Masakan Jepang",
+    latitude: -6.2252,
+    longitude: 106.7997,
     menu: [
       { name: "Salmon Sashimi (5 pcs)", price: "75.000" },
       { name: "Dragon Roll", price: "110.000" },
@@ -55,6 +61,8 @@ const restaurants = [
     image: "https://placehold.co/600x400.png",
     hint: "cheeseburger fries",
     category: "Masakan Amerika",
+    latitude: -6.2480,
+    longitude: 106.8010,
     menu: [
       { name: "Classic Cheeseburger", price: "70.000" },
       { name: "BBQ Bacon Burger", price: "85.000" },
@@ -67,6 +75,8 @@ const restaurants = [
     image: "https://placehold.co/600x400.png",
     hint: "nasi liwet",
     category: "Masakan Sunda",
+    latitude: -6.5950,
+    longitude: 106.8070,
     menu: [
       { name: "Nasi Timbel Komplit", price: "65.000" },
       { name: "Gurame Bakar", price: "90.000" },
@@ -79,6 +89,8 @@ const restaurants = [
     image: "https://placehold.co/600x400.png",
     hint: "rendang sapi",
     category: "Masakan Padang",
+    latitude: -6.1820,
+    longitude: 106.8240,
     menu: [
       { name: "Paket Rendang", price: "35.000" },
       { name: "Ayam Pop", price: "28.000" },
@@ -91,6 +103,8 @@ const restaurants = [
     image: "https://placehold.co/600x400.png",
     hint: "kung pao",
     category: "Masakan Cina",
+    latitude: -6.1510,
+    longitude: 106.8200,
     menu: [
       { name: "Ayam Kung Pao", price: "75.000" },
       { name: "Sapo Tahu Seafood", price: "80.000" },
@@ -103,6 +117,8 @@ const restaurants = [
     image: "https://placehold.co/600x400.png",
     hint: "tacos burritos",
     category: "Masakan Meksiko",
+    latitude: -6.2860,
+    longitude: 106.7990,
     menu: [
       { name: "Tacos al Pastor (3 pcs)", price: "90.000" },
       { name: "Chicken Burrito", price: "105.000" },
@@ -115,6 +131,8 @@ const restaurants = [
     image: "https://placehold.co/600x400.png",
     hint: "korean bbq",
     category: "Masakan Korea",
+    latitude: -6.2440,
+    longitude: 106.7840,
     menu: [
       { name: "Beef Bulgogi Set", price: "150.000" },
       { name: "Kimchi Jjigae", price: "95.000" },
@@ -127,6 +145,8 @@ const restaurants = [
     image: "https://placehold.co/600x400.png",
     hint: "butter chicken",
     category: "Masakan India",
+    latitude: -6.1700,
+    longitude: 106.8310,
     menu: [
       { name: "Butter Chicken", price: "110.000" },
       { name: "Lamb Biryani", price: "130.000" },

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import L from 'leaflet';
+import { restaurants } from '@/app/restaurants/page';
 
 export default function VendorMap() {
   const mapRef = useRef(null);
@@ -11,7 +12,7 @@ export default function VendorMap() {
     // Mencegah peta untuk diinisialisasi ulang jika sudah ada
     if (mapRef.current && !mapInstanceRef.current) {
       // @ts-ignore: Inisialisasi peta pada elemen ref
-      mapInstanceRef.current = L.map(mapRef.current).setView([-6.595, 106.817], 12);
+      mapInstanceRef.current = L.map(mapRef.current).setView([-6.25, 106.81], 11);
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -26,19 +27,12 @@ export default function VendorMap() {
         popupAnchor: [1, -34],
         shadowSize: [41, 41]
       });
-
-      const vendors = [
-        { name: "The Green Leaf", position: [-6.598, 106.806], category: "Italian" },
-        { name: "Ocean's Catch", position: [-6.605, 106.821], category: "Seafood" },
-        { name: "Burger Bliss", position: [-6.589, 106.830], category: "American" },
-        { name: "Tokyo Nites", position: [-6.590, 106.790], category: "Japanese" },
-      ];
       
-      vendors.forEach(vendor => {
+      restaurants.forEach(resto => {
         // @ts-ignore: Menambahkan marker ke instance peta
-        L.marker(vendor.position, { icon: defaultIcon })
+        L.marker([resto.latitude, resto.longitude], { icon: defaultIcon })
           .addTo(mapInstanceRef.current)
-          .bindPopup(`<div class="font-headline font-semibold">${vendor.name}</div><div>${vendor.category}</div>`);
+          .bindPopup(`<div class="font-headline font-semibold">${resto.name}</div><div>${resto.category}</div>`);
       });
     }
 
