@@ -19,6 +19,10 @@ export const registerSchema = z.discriminatedUnion('role', [
     role: z.literal('restaurant'),
     restaurantName: z.string().min(2, { message: 'Nama restoran harus memiliki setidaknya 2 karakter.' }),
     address: z.string().min(10, { message: 'Alamat harus memiliki setidaknya 10 karakter.' }),
+    postalCode: z.string().min(5, { message: 'Kode pos harus terdiri dari 5 digit.' }),
+    latitude: z.coerce.number().min(-90, 'Latitude tidak valid.').max(90, 'Latitude tidak valid.'),
+    longitude: z.coerce.number().min(-180, 'Longitude tidak valid.').max(180, 'Longitude tidak valid.'),
+    photoUrl: z.string().url({ message: 'Harap masukkan URL foto yang valid.' }),
     restaurantPhoneNumber: z.string().min(9, { message: 'Nomor telepon harus valid.' }),
   }),
   z.object({
@@ -60,10 +64,10 @@ export async function registerUser(values: z.infer<typeof registerSchema>) {
     const userId = newUserResult.rows[0].id;
 
     if (validatedFields.data.role === 'restaurant') {
-      const { restaurantName, address, restaurantPhoneNumber } = validatedFields.data;
+      const { restaurantName, address, restaurantPhoneNumber, postalCode, latitude, longitude, photoUrl } = validatedFields.data;
       await client.query(
-        'INSERT INTO restaurants (user_id, restaurant_name, address, phone_number) VALUES ($1, $2, $3, $4)',
-        [userId, restaurantName, address, restaurantPhoneNumber]
+        'INSERT INTO restaurants (user_id, restaurant_name, address, phone_number, postal_code, latitude, longitude, photo_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)',
+        [userId, restaurantName, address, restaurantPhoneNumber, postalCode, latitude, longitude, photoUrl]
       );
     } else if (validatedFields.data.role === 'courier') {
       const { courierPhoneNumber, vehicleType, licensePlate, vehicleColor, photoUrl } = validatedFields.data;

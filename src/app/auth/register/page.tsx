@@ -53,6 +53,9 @@ export default function RegisterPage() {
       role: defaultRole,
       restaurantName: '',
       address: '',
+      postalCode: '',
+      latitude: '',
+      longitude: '',
       restaurantPhoneNumber: '',
       courierPhoneNumber: '',
       vehicleType: '',
@@ -222,14 +225,55 @@ export default function RegisterPage() {
                       name="address"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Alamat Restoran</FormLabel>
+                          <FormLabel>Alamat Lengkap</FormLabel>
                           <FormControl>
-                            <Input placeholder="Jl. Raya No. 123" {...field} disabled={isLoading} />
+                            <Input placeholder="Jl. Raya No. 123, Kota, Provinsi" {...field} disabled={isLoading} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
                     />
+                    <FormField
+                      control={form.control}
+                      name="postalCode"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Kode Pos</FormLabel>
+                          <FormControl>
+                            <Input placeholder="12345" {...field} disabled={isLoading} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                     <div className="grid grid-cols-2 gap-4">
+                        <FormField
+                        control={form.control}
+                        name="latitude"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>Latitude</FormLabel>
+                            <FormControl>
+                                <Input placeholder="-6.208763" {...field} disabled={isLoading} />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                        />
+                        <FormField
+                        control={form.control}
+                        name="longitude"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>Longitude</FormLabel>
+                            <FormControl>
+                                <Input placeholder="106.845599" {...field} disabled={isLoading} />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                        />
+                    </div>
                     <FormField
                       control={form.control}
                       name="restaurantPhoneNumber"
@@ -238,6 +282,19 @@ export default function RegisterPage() {
                           <FormLabel>Nomor Telepon Restoran</FormLabel>
                           <FormControl>
                             <Input placeholder="08123456789" {...field} disabled={isLoading} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                     <FormField
+                      control={form.control}
+                      name="photoUrl"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>URL Foto Restoran</FormLabel>
+                          <FormControl>
+                            <Input placeholder="https://contoh.com/resto.png" {...field} disabled={isLoading} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
