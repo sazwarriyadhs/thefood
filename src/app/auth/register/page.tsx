@@ -51,8 +51,9 @@ export default function RegisterPage() {
       email: '',
       password: '',
       role: defaultRole,
-      restaurantName: '',
       address: '',
+      customerPhoneNumber: '',
+      restaurantName: '',
       postalCode: '',
       latitude: '',
       longitude: '',
@@ -202,6 +203,54 @@ export default function RegisterPage() {
                 />
               </div>
 
+              {role === 'customer' && (
+                <>
+                  <Separator />
+                  <div className="space-y-2">
+                    <h3 className="font-semibold text-lg">Detail Pelanggan</h3>
+                    <FormField
+                      control={form.control}
+                      name="address"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Alamat Lengkap</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Jl. Jendral Sudirman No. 1, Jakarta" {...field} disabled={isLoading} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="customerPhoneNumber"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Nomor Telepon</FormLabel>
+                          <FormControl>
+                            <Input placeholder="081234567890" {...field} disabled={isLoading} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="photoUrl"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>URL Foto Profil (Opsional)</FormLabel>
+                          <FormControl>
+                            <Input placeholder="https://contoh.com/foto-profil.png" {...field} disabled={isLoading} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                </>
+              )}
+              
               {role === 'restaurant' && (
                 <>
                   <Separator />

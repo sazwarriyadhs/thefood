@@ -14,6 +14,9 @@ const baseSchema = z.object({
 export const registerSchema = z.discriminatedUnion('role', [
   z.object({
     role: z.literal('customer'),
+    address: z.string().min(10, { message: 'Alamat lengkap harus diisi.' }),
+    customerPhoneNumber: z.string().min(9, { message: 'Nomor telepon harus valid.' }),
+    photoUrl: z.string().url({ message: 'URL foto tidak valid.' }).optional().or(z.literal('')),
   }),
   z.object({
     role: z.literal('restaurant'),
@@ -63,7 +66,13 @@ export async function registerUser(values: z.infer<typeof registerSchema>) {
     );
     const userId = newUserResult.rows[0].id;
 
-    if (validatedFields.data.role === 'restaurant') {
+    if (validatedFields.data.role === 'customer') {
+      const { address, customerPhoneNumber, photoUrl } = validatedFields.data;
+      await client.query(
+        'INSERT INTO customers (user_id, address, phone_number, photo_url) VALUES ($1, $2, $3, $4)',
+        [userId, address, customerPhoneNumber, photoUrl || null]
+      );
+    } else if (validatedFields.data.role === 'restaurant') {
       const { restaurantName, address, restaurantPhoneNumber, postalCode, latitude, longitude, photoUrl } = validatedFields.data;
       await client.query(
         'INSERT INTO restaurants (user_id, restaurant_name, address, phone_number, postal_code, latitude, longitude, photo_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)',
