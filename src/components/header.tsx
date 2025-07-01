@@ -5,10 +5,10 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export default function Header() {
   const navLinks = [
-    { href: "#how-it-works", label: "How it Works" },
-    { href: "#featured", label: "Restaurants" },
-    { href: "#map", label: "Map" },
-    { href: "#categories", label: "Categories" },
+    { href: "#featured", label: "Restoran" },
+    { href: "#categories", label: "Kategori" },
+    { href: "#partner", label: "Jadi Mitra" },
+    { href: "#courier", label: "Jadi Kurir" },
   ];
 
   return (
@@ -31,10 +31,10 @@ export default function Header() {
             <span className="sr-only">Shopping Cart</span>
           </Button>
           <Button variant="ghost" asChild>
-            <Link href="#">Login</Link>
+            <Link href="#">Masuk</Link>
           </Button>
           <Button asChild>
-            <Link href="#">Sign Up</Link>
+            <Link href="#">Daftar</Link>
           </Button>
           <Sheet>
             <SheetTrigger asChild>

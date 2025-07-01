@@ -12,27 +12,27 @@ export default function Footer() {
               <span className="font-bold font-headline text-2xl">Serenity</span>
             </Link>
             <p className="text-muted-foreground">
-              Your peaceful journey to delicious food.
+              Perjalanan damai Anda menuju makanan lezat.
             </p>
           </div>
           <div>
-            <h3 className="font-semibold font-headline text-lg mb-4">Quick Links</h3>
+            <h3 className="font-semibold font-headline text-lg mb-4">Tautan Cepat</h3>
             <ul className="space-y-2">
-              <li><Link href="#" className="text-muted-foreground hover:text-primary">Home</Link></li>
-              <li><Link href="#" className="text-muted-foreground hover:text-primary">Restaurants</Link></li>
-              <li><Link href="#" className="text-muted-foreground hover:text-primary">Become a Partner</Link></li>
-              <li><Link href="#" className="text-muted-foreground hover:text-primary">About Us</Link></li>
+              <li><Link href="/" className="text-muted-foreground hover:text-primary">Beranda</Link></li>
+              <li><Link href="#featured" className="text-muted-foreground hover:text-primary">Restoran</Link></li>
+              <li><Link href="#partner" className="text-muted-foreground hover:text-primary">Jadi Mitra Restoran</Link></li>
+              <li><Link href="#courier" className="text-muted-foreground hover:text-primary">Jadi Mitra Kurir</Link></li>
             </ul>
           </div>
           <div>
             <h3 className="font-semibold font-headline text-lg mb-4">Legal</h3>
             <ul className="space-y-2">
-              <li><Link href="#" className="text-muted-foreground hover:text-primary">Terms of Service</Link></li>
-              <li><Link href="#" className="text-muted-foreground hover:text-primary">Privacy Policy</Link></li>
+              <li><Link href="#" className="text-muted-foreground hover:text-primary">Ketentuan Layanan</Link></li>
+              <li><Link href="#" className="text-muted-foreground hover:text-primary">Kebijakan Privasi</Link></li>
             </ul>
           </div>
           <div>
-            <h3 className="font-semibold font-headline text-lg mb-4">Follow Us</h3>
+            <h3 className="font-semibold font-headline text-lg mb-4">Ikuti Kami</h3>
             <div className="flex space-x-4">
               <Link href="#" className="text-muted-foreground hover:text-primary">
                 <Facebook className="h-6 w-6" />
@@ -50,7 +50,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 pt-8 border-t text-center text-muted-foreground text-sm">
-          <p>&copy; {new Date().getFullYear()} Serenity Food and Delivery. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Serenity Food and Delivery. Hak cipta dilindungi undang-undang.</p>
         </div>
       </div>
     </footer>

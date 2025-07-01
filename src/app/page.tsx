@@ -11,6 +11,7 @@ import {
   Fish,
   Soup,
   Search,
+  Bike,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -28,19 +29,19 @@ export default function Home() {
         <section className="relative bg-secondary/50 py-20 md:py-32">
           <div className="container mx-auto px-4 text-center">
             <h1 className="font-headline text-4xl md:text-6xl font-bold tracking-tight text-foreground">
-              Find your next meal with Serenity
+              Temukan makanan Anda berikutnya dengan Serenity
             </h1>
             <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-              Discover local restaurants and get your favorite food delivered right to your door.
+              Temukan restoran lokal dan dapatkan makanan favorit Anda diantar langsung ke pintu Anda.
             </p>
             <div className="mt-8 max-w-2xl mx-auto">
               <form className="flex flex-col sm:flex-row gap-4">
                 <div className="relative flex-grow">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                  <Input type="text" placeholder="Food, restaurant..." className="pl-10 h-12 text-base" />
+                  <Input type="text" placeholder="Makanan, restoran..." className="pl-10 h-12 text-base" />
                 </div>
                 <Button type="submit" size="lg" className="h-12 text-base">
-                  Search
+                  Cari
                 </Button>
               </form>
             </div>
@@ -50,8 +51,8 @@ export default function Home() {
         <section id="how-it-works" className="py-20">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="font-headline text-3xl font-bold">How It Works</h2>
-              <p className="text-muted-foreground mt-2">Get your food in 3 simple steps.</p>
+              <h2 className="font-headline text-3xl font-bold">Bagaimana Caranya</h2>
+              <p className="text-muted-foreground mt-2">Dapatkan makanan Anda dalam 3 langkah mudah.</p>
             </div>
             <div className="grid md:grid-cols-3 gap-8">
               <Card className="text-center border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -59,10 +60,10 @@ export default function Home() {
                   <div className="mx-auto bg-primary/10 rounded-full p-4 w-fit">
                     <MapPin className="h-8 w-8 text-primary" />
                   </div>
-                  <CardTitle className="font-headline mt-4">Choose a Restaurant</CardTitle>
+                  <CardTitle className="font-headline mt-4">Pilih Restoran</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">Browse through hundreds of local restaurants and menus.</p>
+                  <p className="text-muted-foreground">Jelajahi ratusan restoran dan menu lokal.</p>
                 </CardContent>
               </Card>
               <Card className="text-center border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -70,10 +71,10 @@ export default function Home() {
                   <div className="mx-auto bg-primary/10 rounded-full p-4 w-fit">
                     <ClipboardList className="h-8 w-8 text-primary" />
                   </div>
-                  <CardTitle className="font-headline mt-4">Place Your Order</CardTitle>
+                  <CardTitle className="font-headline mt-4">Pesan</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">Add your favorite dishes to the cart and checkout securely.</p>
+                  <p className="text-muted-foreground">Tambahkan hidangan favorit Anda ke troli dan checkout dengan aman.</p>
                 </CardContent>
               </Card>
               <Card className="text-center border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -81,10 +82,10 @@ export default function Home() {
                   <div className="mx-auto bg-primary/10 rounded-full p-4 w-fit">
                     <Truck className="h-8 w-8 text-primary" />
                   </div>
-                  <CardTitle className="font-headline mt-4">Get It Delivered</CardTitle>
+                  <CardTitle className="font-headline mt-4">Diantar</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">Track your order in real-time and enjoy your meal.</p>
+                  <p className="text-muted-foreground">Lacak pesanan Anda secara real-time dan nikmati makanan Anda.</p>
                 </CardContent>
               </Card>
             </div>
@@ -94,8 +95,8 @@ export default function Home() {
         <section id="featured" className="bg-secondary/50 py-20">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="font-headline text-3xl font-bold">Featured Restaurants</h2>
-              <p className="text-muted-foreground mt-2">Handpicked selection of the best places to eat.</p>
+              <h2 className="font-headline text-3xl font-bold">Restoran Unggulan</h2>
+              <p className="text-muted-foreground mt-2">Pilihan tempat makan terbaik yang dipilih sendiri.</p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
@@ -129,8 +130,8 @@ export default function Home() {
         <section id="map" className="py-20">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="font-headline text-3xl font-bold">Find Us Near You</h2>
-              <p className="text-muted-foreground mt-2">Explore restaurants on the map.</p>
+              <h2 className="font-headline text-3xl font-bold">Temukan Kami di Dekat Anda</h2>
+              <p className="text-muted-foreground mt-2">Jelajahi restoran di peta.</p>
             </div>
             <MapLoader />
           </div>
@@ -139,8 +140,8 @@ export default function Home() {
         <section id="categories" className="py-20">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="font-headline text-3xl font-bold">Popular Categories</h2>
-              <p className="text-muted-foreground mt-2">Explore food from a wide range of categories.</p>
+              <h2 className="font-headline text-3xl font-bold">Kategori Populer</h2>
+              <p className="text-muted-foreground mt-2">Jelajahi makanan dari berbagai kategori.</p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
@@ -160,17 +161,58 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="partner" className="bg-primary/80 text-primary-foreground py-20">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="font-headline text-3xl font-bold">Become a Partner</h2>
-            <p className="mt-2 max-w-2xl mx-auto">
-              Grow your business and reach more customers by joining our platform.
-            </p>
-            <Button asChild size="lg" className="mt-6 bg-background text-primary hover:bg-background/90">
-              <Link href="#">Register your Restaurant</Link>
-            </Button>
+        <section id="partner" className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="text-center md:text-left">
+                <h2 className="font-headline text-3xl font-bold">Jadi Mitra Restoran</h2>
+                <p className="mt-4 text-muted-foreground max-w-lg mx-auto md:mx-0">
+                  Kembangkan bisnis Anda dan jangkau lebih banyak pelanggan dengan bergabung di platform kami. Daftarkan restoran Anda dan lihat pesanan Anda bertambah.
+                </p>
+                <Button asChild size="lg" className="mt-6">
+                  <Link href="#">Daftarkan Restoran Anda</Link>
+                </Button>
+              </div>
+              <div className="flex justify-center">
+                <Image
+                  src="https://placehold.co/600x400.png"
+                  alt="Restaurant owner smiling"
+                  width={500}
+                  height={400}
+                  className="rounded-lg shadow-xl"
+                  data-ai-hint="restaurant owner"
+                />
+              </div>
+            </div>
           </div>
         </section>
+
+        <section id="courier" className="bg-secondary/50 py-20">
+            <div className="container mx-auto px-4">
+                <div className="grid md:grid-cols-2 gap-12 items-center">
+                    <div className="order-2 md:order-1 flex justify-center">
+                        <Image
+                            src="https://placehold.co/600x400.png"
+                            alt="Courier on a mobile phone"
+                            width={500}
+                            height={400}
+                            className="rounded-lg shadow-xl"
+                            data-ai-hint="delivery scooter"
+                        />
+                    </div>
+                    <div className="order-1 md:order-2 text-center md:text-left">
+                        <h2 className="font-headline text-3xl font-bold">Jadilah Kurir Mobile</h2>
+                        <p className="mt-4 text-muted-foreground max-w-lg mx-auto md:mx-0">
+                            Dapatkan penghasilan fleksibel dengan menjadi mitra kurir kami. Antar pesanan dan dapatkan bayaran sesuai jadwal Anda.
+                        </p>
+                        <Button asChild size="lg" className="mt-6">
+                            <Link href="#">Gabung Sekarang</Link>
+                        </Button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
       </main>
       <Footer />
     </div>
