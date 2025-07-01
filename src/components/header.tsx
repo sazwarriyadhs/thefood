@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import { Menu, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -32,10 +33,10 @@ export default function Header() {
             <span className="sr-only">Shopping Cart</span>
           </Button>
           <Button variant="ghost" asChild>
-            <Link href="#">Masuk</Link>
+            <Link href="/auth/login">Masuk</Link>
           </Button>
           <Button asChild>
-            <Link href="#">Daftar</Link>
+            <Link href="/auth/register">Daftar</Link>
           </Button>
           <Sheet>
             <SheetTrigger asChild>
