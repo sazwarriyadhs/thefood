@@ -57,6 +57,8 @@ export default function RegisterPage() {
       courierPhoneNumber: '',
       vehicleType: '',
       licensePlate: '',
+      vehicleColor: '',
+      photoUrl: '',
     },
   });
 
@@ -284,6 +286,32 @@ export default function RegisterPage() {
                           <FormLabel>Nomor Plat Kendaraan</FormLabel>
                           <FormControl>
                             <Input placeholder="B 1234 ABC" {...field} disabled={isLoading} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="vehicleColor"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Warna Kendaraan</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Hitam" {...field} disabled={isLoading} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="photoUrl"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>URL Foto Profil</FormLabel>
+                          <FormControl>
+                            <Input placeholder="https://contoh.com/foto.png" {...field} disabled={isLoading} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>

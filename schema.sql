@@ -1,110 +1,68 @@
--- Users Table: Stores basic information for all user types.
+
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS restaurants CASCADE;
+DROP TABLE IF EXISTS couriers CASCADE;
+DROP TABLE IF EXISTS menu_items CASCADE;
+DROP TABLE IF EXISTS orders CASCADE;
+DROP TABLE IF EXISTS order_items CASCADE;
+
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     role VARCHAR(50) NOT NULL CHECK (role IN ('customer', 'restaurant', 'courier')),
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- Restaurants Table: Stores information specific to restaurant owners.
 CREATE TABLE restaurants (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER UNIQUE NOT NULL,
+    user_id INTEGER UNIQUE NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     restaurant_name VARCHAR(255) NOT NULL,
     address TEXT NOT NULL,
-    phone_number VARCHAR(20),
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    phone_number VARCHAR(20) NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- Couriers Table: Stores information specific to couriers.
 CREATE TABLE couriers (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER UNIQUE NOT NULL,
+    user_id INTEGER UNIQUE NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     phone_number VARCHAR(20) NOT NULL,
     vehicle_type VARCHAR(100) NOT NULL,
     license_plate VARCHAR(20) NOT NULL,
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    vehicle_color VARCHAR(50) NOT NULL,
+    photo_url VARCHAR(255) NOT NULL,
+    join_date TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- MenuItems Table: Stores menu items for each restaurant.
 CREATE TABLE menu_items (
     id SERIAL PRIMARY KEY,
-    restaurant_id INTEGER NOT NULL,
+    restaurant_id INTEGER NOT NULL REFERENCES restaurants(id) ON DELETE CASCADE,
     name VARCHAR(255) NOT NULL,
     description TEXT,
     price NUMERIC(10, 2) NOT NULL,
     category VARCHAR(100),
     image_url VARCHAR(255),
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (restaurant_id) REFERENCES restaurants(id) ON DELETE CASCADE
+    is_available BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- Orders Table: Stores customer orders.
 CREATE TABLE orders (
     id SERIAL PRIMARY KEY,
-    customer_id INTEGER NOT NULL,
-    restaurant_id INTEGER NOT NULL,
-    courier_id INTEGER, -- Can be null initially
-    status VARCHAR(50) NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'confirmed', 'preparing', 'out_for_delivery', 'delivered', 'cancelled')),
+    customer_id INTEGER NOT NULL REFERENCES users(id),
+    restaurant_id INTEGER NOT NULL REFERENCES restaurants(id),
+    courier_id INTEGER REFERENCES couriers(id),
+    status VARCHAR(50) NOT NULL,
     total_amount NUMERIC(10, 2) NOT NULL,
     delivery_address TEXT NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (customer_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (restaurant_id) REFERENCES restaurants(id) ON DELETE CASCADE,
-    FOREIGN KEY (courier_id) REFERENCES couriers(id) ON DELETE SET NULL
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- OrderItems Table: Stores the items included in an order.
 CREATE TABLE order_items (
     id SERIAL PRIMARY KEY,
-    order_id INTEGER NOT NULL,
-    menu_item_id INTEGER NOT NULL,
+    order_id INTEGER NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
+    menu_item_id INTEGER NOT NULL REFERENCES menu_items(id),
     quantity INTEGER NOT NULL,
-    price_at_time_of_order NUMERIC(10, 2) NOT NULL,
-    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
-    FOREIGN KEY (menu_item_id) REFERENCES menu_items(id) ON DELETE CASCADE
+    price_at_order NUMERIC(10, 2) NOT NULL
 );
-
--- A simple function to automatically update the `updated_at` timestamp
-CREATE OR REPLACE FUNCTION trigger_set_timestamp()
-RETURNS TRIGGER AS $$
-BEGIN
-  NEW.updated_at = NOW();
-  RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
--- Triggers to automatically update the `updated_at` field on row update
-CREATE TRIGGER set_timestamp_users
-BEFORE UPDATE ON users
-FOR EACH ROW
-EXECUTE FUNCTION trigger_set_timestamp();
-
-CREATE TRIGGER set_timestamp_restaurants
-BEFORE UPDATE ON restaurants
-FOR EACH ROW
-EXECUTE FUNCTION trigger_set_timestamp();
-
-CREATE TRIGGER set_timestamp_couriers
-BEFORE UPDATE ON couriers
-FOR EACH ROW
-EXECUTE FUNCTION trigger_set_timestamp();
-
-CREATE TRIGGER set_timestamp_menu_items
-BEFORE UPDATE ON menu_items
-FOR EACH ROW
-EXECUTE FUNCTION trigger_set_timestamp();
-
-CREATE TRIGGER set_timestamp_orders
-BEFORE UPDATE ON orders
-FOR EACH ROW
-EXECUTE FUNCTION trigger_set_timestamp();
