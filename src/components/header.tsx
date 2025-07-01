@@ -7,6 +7,7 @@ export default function Header() {
   const navLinks = [
     { href: "#how-it-works", label: "How it Works" },
     { href: "#featured", label: "Restaurants" },
+    { href: "#map", label: "Map" },
     { href: "#categories", label: "Categories" },
   ];
 

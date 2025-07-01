@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import {
   ChefHat,
   MapPin,
@@ -18,6 +19,12 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { Skeleton } from "@/components/ui/skeleton";
+
+const VendorMap = dynamic(() => import("@/components/vendor-map"), {
+  ssr: false,
+  loading: () => <Skeleton className="h-[500px] w-full rounded-lg" />,
+});
 
 export default function Home() {
   return (
@@ -122,6 +129,16 @@ export default function Home() {
                 </Card>
               ))}
             </div>
+          </div>
+        </section>
+
+        <section id="map" className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="font-headline text-3xl font-bold">Find Us Near You</h2>
+              <p className="text-muted-foreground mt-2">Explore restaurants on the map.</p>
+            </div>
+            <VendorMap />
           </div>
         </section>
 
