@@ -199,7 +199,7 @@ export default function Home() {
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div className="order-2 md:order-1 flex justify-center">
                         <Image
-                            src="https://placehold.co/600x400.png"
+                            src="/images/serenitcourier.png"
                             alt="Courier on a mobile phone"
                             width={500}
                             height={400}

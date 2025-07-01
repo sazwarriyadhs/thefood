@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="grid gap-8 md:grid-cols-4">
           <div className="flex flex-col space-y-4">
             <Link href="/" className="flex items-center space-x-2">
-              <Image src="/images/logo.png" alt="Serenity Logo" width={40} height={40} className="h-8 w-8 object-contain" />
+              <Image src="/images/logo.png" alt="Serenity Logo" width={40} height={40} className="h-8 w-8 object-contain mix-blend-multiply" />
               <span className="font-bold font-headline text-2xl">Serenity</span>
             </Link>
             <p className="text-muted-foreground">
