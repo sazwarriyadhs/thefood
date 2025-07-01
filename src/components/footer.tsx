@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import { Facebook, Instagram, Twitter } from "lucide-react";
 import Image from "next/image";
@@ -20,7 +21,7 @@ export default function Footer() {
             <h3 className="font-semibold font-headline text-lg mb-4">Tautan Cepat</h3>
             <ul className="space-y-2">
               <li><Link href="/" className="text-muted-foreground hover:text-primary">Beranda</Link></li>
-              <li><Link href="#featured" className="text-muted-foreground hover:text-primary">Restoran</Link></li>
+              <li><Link href="/restaurants" className="text-muted-foreground hover:text-primary">Restoran</Link></li>
               <li><Link href="#partner" className="text-muted-foreground hover:text-primary">Jadi Mitra Restoran</Link></li>
               <li><Link href="#courier" className="text-muted-foreground hover:text-primary">Jadi Mitra Kurir</Link></li>
             </ul>

@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export default function Header() {
   const navLinks = [
-    { href: "#featured", label: "Restoran" },
+    { href: "/restaurants", label: "Restoran" },
     { href: "#categories", label: "Kategori" },
     { href: "#partner", label: "Jadi Mitra" },
     { href: "#courier", label: "Jadi Kurir" },
