@@ -28,6 +28,13 @@ export default function Home() {
       <main className="flex-grow">
         <section className="relative bg-secondary/50 py-20 md:py-32">
           <div className="container mx-auto px-4 text-center">
+            <Image
+              src="/images/logo.png"
+              alt="Serenity Logo"
+              width={80}
+              height={80}
+              className="mx-auto mb-6"
+            />
             <h1 className="font-headline text-4xl md:text-6xl font-bold tracking-tight text-foreground">
               Temukan makanan Anda berikutnya dengan Serenity
             </h1>
