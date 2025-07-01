@@ -1,12 +1,14 @@
+
 'use client';
 
 import { useEffect, useRef } from 'react';
 import L from 'leaflet';
-import { restaurants } from '@/app/restaurants/page';
+import { allRestaurants } from '@/lib/restaurant-data';
 
 export default function VendorMap() {
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
+  const restaurantsWithCoords = allRestaurants.filter(r => r.latitude && r.longitude);
 
   useEffect(() => {
     // Mencegah peta untuk diinisialisasi ulang jika sudah ada
@@ -28,13 +30,13 @@ export default function VendorMap() {
         shadowSize: [41, 41]
       });
       
-      restaurants.forEach(resto => {
-        const menuHtml = resto.menu.map(item => `
+      restaurantsWithCoords.forEach(resto => {
+        const menuHtml = resto.menu?.map(item => `
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
             <span>${item.name}</span>
             <span style="font-weight: 500; white-space: nowrap; padding-left: 16px;">Rp ${item.price}</span>
           </div>
-        `).join('');
+        `).join('') || '<p style="font-size: 0.9rem; color: #6b7280;">Menu belum tersedia.</p>';
 
         const popupContent = `
           <div style="font-family: sans-serif; max-width: 250px;">
@@ -44,12 +46,12 @@ export default function VendorMap() {
             <div style="font-size: 0.9rem; display: flex; flex-direction: column;">
               ${menuHtml}
             </div>
-            <button 
-              onclick="alert('Fungsi pesan belum diimplementasikan!')" 
-              style="margin-top: 12px; width: 100%; padding: 8px; background-color: #59B88D; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; text-align: center;"
+            <a 
+              href="/restaurants/${resto.slug}" 
+              style="margin-top: 12px; display: block; width: 100%; box-sizing: border-box; padding: 8px; background-color: #59B88D; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; text-align: center; text-decoration: none;"
             >
-              Pesan Sekarang
-            </button>
+              Lihat & Pesan
+            </a>
           </div>
         `;
         // @ts-ignore: Menambahkan marker ke instance peta

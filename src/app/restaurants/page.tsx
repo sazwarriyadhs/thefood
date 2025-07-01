@@ -1,5 +1,8 @@
 
+'use client';
+
 import Image from "next/image";
+import Link from "next/link";
 import { Utensils, MapPin } from "lucide-react";
 import {
   Card,
@@ -11,151 +14,11 @@ import {
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-
-export const restaurants = [
-  {
-    name: "Sari Nusantara",
-    address: "Jl. Pajajaran Indah V No. 7, Baranangsiang, Bogor",
-    image: "https://placehold.co/600x400.png",
-    hint: "nasi rames",
-    category: "Masakan Indonesia",
-    latitude: -6.6045,
-    longitude: 106.8093,
-    menu: [
-      { name: "Nasi Goreng Spesial", price: "45.000" },
-      { name: "Rendang Daging", price: "55.000" },
-      { name: "Sate Ayam (10 tusuk)", price: "50.000" },
-    ],
-  },
-  {
-    name: "La Pizzeria",
-    address: "Jl. Salak No. 24, Babakan, Bogor Tengah",
-    image: "https://placehold.co/600x400.png",
-    hint: "wood-fired pizza",
-    category: "Masakan Italia",
-    latitude: -6.5912,
-    longitude: 106.7932,
-    menu: [
-      { name: "Margherita Pizza", price: "85.000" },
-      { name: "Fettuccine Carbonara", price: "95.000" },
-      { name: "Tiramisu", price: "60.000" },
-    ],
-  },
-  {
-    name: "Sakura Sushi Bar",
-    address: "Botani Square Mall, Lt. 2, Jl. Raya Pajajaran, Bogor",
-    image: "https://placehold.co/600x400.png",
-    hint: "sushi roll",
-    category: "Masakan Jepang",
-    latitude: -6.5971,
-    longitude: 106.8062,
-    menu: [
-      { name: "Salmon Sashimi (5 pcs)", price: "75.000" },
-      { name: "Dragon Roll", price: "110.000" },
-      { name: "Chicken Katsu Don", price: "80.000" },
-    ],
-  },
-  {
-    name: "Big Bite Burgers",
-    address: "Jl. Achmad Adnawijaya No. 150, Tegal Gundil, Bogor",
-    image: "https://placehold.co/600x400.png",
-    hint: "cheeseburger fries",
-    category: "Masakan Amerika",
-    latitude: -6.5732,
-    longitude: 106.8099,
-    menu: [
-      { name: "Classic Cheeseburger", price: "70.000" },
-      { name: "BBQ Bacon Burger", price: "85.000" },
-      { name: "Loaded Fries", price: "50.000" },
-    ],
-  },
-  {
-    name: "Warung Sunda Asri",
-    address: "Jl. Raya Puncak - Cianjur No. 56, Cisarua, Bogor",
-    image: "https://placehold.co/600x400.png",
-    hint: "nasi liwet",
-    category: "Masakan Sunda",
-    latitude: -6.7025,
-    longitude: 106.9400,
-    menu: [
-      { name: "Nasi Timbel Komplit", price: "65.000" },
-      { name: "Gurame Bakar", price: "90.000" },
-      { name: "Sayur Asem", price: "25.000" },
-    ],
-  },
-  {
-    name: "Rendang Express",
-    address: "Jl. Surya Kencana No. 285, Gudang, Bogor Tengah",
-    image: "https://placehold.co/600x400.png",
-    hint: "rendang sapi",
-    category: "Masakan Padang",
-    latitude: -6.6033,
-    longitude: 106.7999,
-    menu: [
-      { name: "Paket Rendang", price: "35.000" },
-      { name: "Ayam Pop", price: "28.000" },
-      { name: "Gulai Tunjang", price: "30.000" },
-    ],
-  },
-  {
-    name: "Golden Wok",
-    address: "Jl. Siliwangi No. 1, Sukasari, Bogor Timur",
-    image: "https://placehold.co/600x400.png",
-    hint: "kung pao",
-    category: "Masakan Cina",
-    latitude: -6.6120,
-    longitude: 106.8065,
-    menu: [
-      { name: "Ayam Kung Pao", price: "75.000" },
-      { name: "Sapo Tahu Seafood", price: "80.000" },
-      { name: "Fuyunghai", price: "65.000" },
-    ],
-  },
-  {
-    name: "El Agave",
-    address: "Jl. Pangrango No. 19, Babakan, Bogor Tengah",
-    image: "https://placehold.co/600x400.png",
-    hint: "tacos burritos",
-    category: "Masakan Meksiko",
-    latitude: -6.5928,
-    longitude: 106.7981,
-    menu: [
-      { name: "Tacos al Pastor (3 pcs)", price: "90.000" },
-      { name: "Chicken Burrito", price: "105.000" },
-      { name: "Nachos Grande", price: "85.000" },
-    ],
-  },
-  {
-    name: "Seoul Garden",
-    address: "AEON Mall Sentul City, Lt. 1, Sentul, Bogor",
-    image: "https://placehold.co/600x400.png",
-    hint: "korean bbq",
-    category: "Masakan Korea",
-    latitude: -6.5738,
-    longitude: 106.8491,
-    menu: [
-      { name: "Beef Bulgogi Set", price: "150.000" },
-      { name: "Kimchi Jjigae", price: "95.000" },
-      { name: "Japchae", price: "85.000" },
-    ],
-  },
-  {
-    name: "Delhi Spice",
-    address: "Jl. Bina Marga I No. 1C, Baranangsiang, Bogor Timur",
-    image: "https://placehold.co/600x400.png",
-    hint: "butter chicken",
-    category: "Masakan India",
-    latitude: -6.6081,
-    longitude: 106.8145,
-    menu: [
-      { name: "Butter Chicken", price: "110.000" },
-      { name: "Lamb Biryani", price: "130.000" },
-      { name: "Garlic Naan", price: "30.000" },
-    ],
-  },
-];
+import { allRestaurants } from "@/lib/restaurant-data";
 
 export default function RestaurantsPage() {
+  const restaurantsWithDetails = allRestaurants.filter(r => r.address && r.menu);
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -168,45 +31,47 @@ export default function RestaurantsPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {restaurants.map((resto, index) => (
-              <Card key={index} className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="md:flex">
-                  <div className="md:w-1/3">
-                    <Image
-                      src={resto.image}
-                      alt={resto.name}
-                      width={600}
-                      height={400}
-                      className="w-full h-full object-cover"
-                      data-ai-hint={resto.hint}
-                    />
+            {restaurantsWithDetails.map((resto) => (
+              <Link key={resto.slug} href={`/restaurants/${resto.slug}`} className="block">
+                <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 h-full">
+                  <div className="md:flex h-full">
+                    <div className="md:w-1/3">
+                      <Image
+                        src={resto.image}
+                        alt={resto.name}
+                        width={600}
+                        height={400}
+                        className="w-full h-full object-cover"
+                        data-ai-hint={resto.hint}
+                      />
+                    </div>
+                    <div className="md:w-2/3 flex flex-col">
+                      <CardHeader>
+                        <Badge variant="secondary" className="w-fit mb-2">{resto.category}</Badge>
+                        <CardTitle>{resto.name}</CardTitle>
+                        <CardDescription className="flex items-center pt-1">
+                          <MapPin className="w-4 h-4 mr-2" />
+                          {resto.address}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent className="flex-grow">
+                          <h4 className="font-semibold text-md mb-2 flex items-center">
+                              <Utensils className="w-4 h-4 mr-2" />
+                              Menu Unggulan
+                          </h4>
+                          <ul className="space-y-1 text-muted-foreground">
+                              {resto.menu?.slice(0, 3).map((item, itemIndex) => (
+                                  <li key={itemIndex} className="flex justify-between">
+                                      <span>{item.name}</span>
+                                      <span className="font-medium text-foreground">Rp {item.price}</span>
+                                  </li>
+                              ))}
+                          </ul>
+                      </CardContent>
+                    </div>
                   </div>
-                  <div className="md:w-2/3 flex flex-col">
-                    <CardHeader>
-                      <Badge variant="secondary" className="w-fit mb-2">{resto.category}</Badge>
-                      <CardTitle>{resto.name}</CardTitle>
-                      <CardDescription className="flex items-center pt-1">
-                        <MapPin className="w-4 h-4 mr-2" />
-                        {resto.address}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="flex-grow">
-                        <h4 className="font-semibold text-md mb-2 flex items-center">
-                            <Utensils className="w-4 h-4 mr-2" />
-                            Menu Unggulan
-                        </h4>
-                        <ul className="space-y-1 text-muted-foreground">
-                            {resto.menu.map((item, itemIndex) => (
-                                <li key={itemIndex} className="flex justify-between">
-                                    <span>{item.name}</span>
-                                    <span className="font-medium text-foreground">Rp {item.price}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    </CardContent>
-                  </div>
-                </div>
-              </Card>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>
