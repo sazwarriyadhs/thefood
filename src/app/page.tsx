@@ -383,7 +383,7 @@ export default function Home() {
                   Kembangkan bisnis Anda dan jangkau lebih banyak pelanggan dengan bergabung di platform kami. Daftarkan restoran Anda dan lihat pesanan Anda bertambah.
                 </p>
                 <Button asChild size="lg" className="mt-6">
-                  <Link href="#">Daftarkan Restoran Anda</Link>
+                  <Link href="/auth/register?role=restaurant">Daftarkan Restoran Anda</Link>
                 </Button>
               </div>
               <div className="flex justify-center">
@@ -419,7 +419,7 @@ export default function Home() {
                             Dapatkan penghasilan fleksibel dengan menjadi mitra kurir kami. Antar pesanan dan dapatkan bayaran sesuai jadwal Anda.
                         </p>
                         <Button asChild size="lg" className="mt-6">
-                            <Link href="#">Gabung Sekarang</Link>
+                            <Link href="/auth/register?role=courier">Gabung Sekarang</Link>
                         </Button>
                     </div>
                 </div>

@@ -12,6 +12,5 @@ const pool = new Pool({
   connectionString,
 });
 
-export default {
-  query: (text: string, params?: any[]) => pool.query(text, params),
-};
+// Mengekspor instance pool secara langsung untuk kontrol transaksi
+export default pool;
