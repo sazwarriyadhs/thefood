@@ -20,14 +20,11 @@ export default function VendorMap() {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(mapInstanceRef.current);
 
-      const defaultIcon = new L.Icon({
-        iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-        iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41]
+      const restaurantIcon = new L.Icon({
+        iconUrl: '/images/restopin.png',
+        iconSize: [40, 40],
+        iconAnchor: [20, 40],
+        popupAnchor: [0, -40],
       });
       
       restaurantsWithCoords.forEach(resto => {
@@ -55,7 +52,7 @@ export default function VendorMap() {
           </div>
         `;
         // @ts-ignore: Menambahkan marker ke instance peta
-        L.marker([resto.latitude, resto.longitude], { icon: defaultIcon })
+        L.marker([resto.latitude, resto.longitude], { icon: restaurantIcon })
           .addTo(mapInstanceRef.current)
           .bindPopup(popupContent);
       });

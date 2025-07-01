@@ -130,8 +130,8 @@ const restaurantDetails: Omit<Restaurant, 'name' | 'slug' | 'category' | 'image'
 
 
 const baseRestaurants: Omit<Restaurant, 'slug' | 'address' | 'latitude' | 'longitude' | 'menu'>[] = [
-  { name: "Sari Nusantara", category: "Masakan Indonesia", image: "https://placehold.co/600x400.png", hint: "nasi rames" },
-  { name: "La Pizzeria", category: "Masakan Italia", image: "https://placehold.co/600x400.png", hint: "wood-fired pizza" },
+  { name: "Sari Nusantara", category: "Masakan Indonesia", image: "/images/La Pizzeria.jpg", hint: "nasi rames" },
+  { name: "La Pizzeria", category: "Masakan Italia", image: "/images/La Pizzeria.jpg", hint: "wood-fired pizza" },
   { name: "Sakura Sushi Bar", category: "Masakan Jepang", image: "https://placehold.co/600x400.png", hint: "sushi roll" },
   { name: "Big Bite Burgers", category: "Masakan Amerika", image: "https://placehold.co/600x400.png", hint: "cheeseburger fries" },
   { name: "Warung Sunda Asri", category: "Masakan Sunda", image: "https://placehold.co/600x400.png", hint: "nasi liwet" },
