@@ -25,6 +25,7 @@ export const registerSchema = z.discriminatedUnion('role', [
     role: z.literal('courier'),
     courierPhoneNumber: z.string().min(9, { message: 'Nomor telepon harus valid.' }),
     vehicleType: z.string().min(3, { message: 'Jenis kendaraan harus diisi.' }),
+    licensePlate: z.string().min(3, { message: 'Nomor plat harus diisi.' }),
   }),
 ]).and(baseSchema);
 
@@ -63,10 +64,10 @@ export async function registerUser(values: z.infer<typeof registerSchema>) {
         [userId, restaurantName, address, restaurantPhoneNumber]
       );
     } else if (validatedFields.data.role === 'courier') {
-      const { courierPhoneNumber, vehicleType } = validatedFields.data;
+      const { courierPhoneNumber, vehicleType, licensePlate } = validatedFields.data;
       await client.query(
-        'INSERT INTO couriers (user_id, phone_number, vehicle_type) VALUES ($1, $2, $3)',
-        [userId, courierPhoneNumber, vehicleType]
+        'INSERT INTO couriers (user_id, phone_number, vehicle_type, license_plate) VALUES ($1, $2, $3, $4)',
+        [userId, courierPhoneNumber, vehicleType, licensePlate]
       );
     }
 

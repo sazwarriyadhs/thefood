@@ -56,6 +56,7 @@ export default function RegisterPage() {
       restaurantPhoneNumber: '',
       courierPhoneNumber: '',
       vehicleType: '',
+      licensePlate: '',
     },
   });
 
@@ -270,6 +271,19 @@ export default function RegisterPage() {
                           <FormLabel>Jenis Kendaraan</FormLabel>
                           <FormControl>
                             <Input placeholder="Motor Vario 150" {...field} disabled={isLoading} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                     <FormField
+                      control={form.control}
+                      name="licensePlate"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Nomor Plat Kendaraan</FormLabel>
+                          <FormControl>
+                            <Input placeholder="B 1234 ABC" {...field} disabled={isLoading} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
