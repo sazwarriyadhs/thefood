@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -29,7 +28,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { useToast } from '@/hooks/use-toast';
 import { registerUser, registerSchema } from '@/actions/auth';
 import { Loader2 } from 'lucide-react';
-import Image from "next/image";
+import Image from 'next/image';
 import { Separator } from '@/components/ui/separator';
 
 const formSchema = registerSchema;
@@ -86,7 +85,7 @@ export default function RegisterPage() {
         });
       }
     } catch (error) {
-       toast({
+      toast({
         variant: 'destructive',
         title: 'Terjadi Kesalahan',
         description: 'Tidak dapat mendaftar saat ini. Silakan coba lagi nanti.',
@@ -100,13 +99,11 @@ export default function RegisterPage() {
     <div className="flex items-center justify-center min-h-screen bg-secondary/50 py-8">
       <Card className="mx-auto max-w-lg w-full">
         <CardHeader className="text-center">
-             <Link href="/" className="inline-block mb-4">
-               <Image src="/images/logo.png" alt="Serenity Logo" width={80} height={80} className="mx-auto mix-blend-multiply" />
-            </Link>
+          <Link href="/" className="inline-block mb-4">
+            <Image src="/images/logo.png" alt="Serenity Logo" width={80} height={80} className="mx-auto mix-blend-multiply" />
+          </Link>
           <CardTitle className="text-2xl font-bold font-headline">Buat Akun</CardTitle>
-          <CardDescription>
-            Isi formulir di bawah ini untuk memulai.
-          </CardDescription>
+          <CardDescription>Isi formulir di bawah ini untuk memulai.</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -124,24 +121,14 @@ export default function RegisterPage() {
                         className="grid grid-cols-3 gap-2"
                         disabled={isLoading}
                       >
-                        <FormItem>
-                          <RadioGroupItem value="customer" id="customer" className="peer sr-only" />
-                          <FormLabel htmlFor="customer" className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer">
-                            Pelanggan
-                          </FormLabel>
-                        </FormItem>
-                         <FormItem>
-                          <RadioGroupItem value="restaurant" id="restaurant" className="peer sr-only" />
-                          <FormLabel htmlFor="restaurant" className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer">
-                            Restoran
-                          </FormLabel>
-                        </FormItem>
-                         <FormItem>
-                          <RadioGroupItem value="courier" id="courier" className="peer sr-only" />
-                          <FormLabel htmlFor="courier" className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer">
-                            Kurir
-                          </FormLabel>
-                        </FormItem>
+                        {['customer', 'restaurant', 'courier'].map((r) => (
+                          <FormItem key={r}>
+                            <RadioGroupItem value={r} id={r} className="peer sr-only" />
+                            <FormLabel htmlFor={r} className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer">
+                              {r === 'customer' ? 'Pelanggan' : r === 'restaurant' ? 'Restoran' : 'Kurir'}
+                            </FormLabel>
+                          </FormItem>
+                        ))}
                       </RadioGroup>
                     </FormControl>
                     <FormMessage />
@@ -153,54 +140,27 @@ export default function RegisterPage() {
 
               <div className="space-y-2">
                 <h3 className="font-semibold text-lg">Detail Akun Dasar</h3>
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Nama Lengkap</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Nama Anda" {...field} disabled={isLoading} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="email@contoh.com"
-                          {...field}
-                          disabled={isLoading}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Kata Sandi</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="password"
-                          placeholder="********"
-                          {...field}
-                          disabled={isLoading}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                {['name', 'email', 'password'].map((fieldName) => (
+                  <FormField
+                    key={fieldName}
+                    control={form.control}
+                    name={fieldName as 'name' | 'email' | 'password'}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{fieldName === 'name' ? 'Nama Lengkap' : fieldName === 'email' ? 'Email' : 'Kata Sandi'}</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            placeholder={fieldName === 'email' ? 'email@contoh.com' : fieldName === 'password' ? '********' : 'Nama Anda'}
+                            type={fieldName === 'password' ? 'password' : 'text'}
+                            disabled={isLoading}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                ))}
               </div>
 
               {role === 'customer' && (
@@ -208,147 +168,71 @@ export default function RegisterPage() {
                   <Separator />
                   <div className="space-y-2">
                     <h3 className="font-semibold text-lg">Detail Pelanggan</h3>
-                    <FormField
-                      control={form.control}
-                      name="address"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Alamat Lengkap</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Jl. Jendral Sudirman No. 1, Jakarta" {...field} disabled={isLoading} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="customerPhoneNumber"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Nomor Telepon</FormLabel>
-                          <FormControl>
-                            <Input placeholder="081234567890" {...field} disabled={isLoading} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="photoUrl"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>URL Foto Profil (Opsional)</FormLabel>
-                          <FormControl>
-                            <Input placeholder="https://contoh.com/foto-profil.png" {...field} disabled={isLoading} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                    {['address', 'customerPhoneNumber', 'photoUrl'].map((fieldName) => (
+                      <FormField
+                        key={fieldName}
+                        control={form.control}
+                        name={fieldName as any}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>{fieldName === 'address' ? 'Alamat Lengkap' : fieldName === 'customerPhoneNumber' ? 'Nomor Telepon' : 'URL Foto Profil'}</FormLabel>
+                            <FormControl>
+                              <Input placeholder={`Masukkan ${fieldName}`} {...field} disabled={isLoading} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    ))}
                   </div>
                 </>
               )}
-              
+
               {role === 'restaurant' && (
                 <>
                   <Separator />
                   <div className="space-y-2">
                     <h3 className="font-semibold text-lg">Detail Restoran</h3>
-                    <FormField
-                      control={form.control}
-                      name="restaurantName"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Nama Restoran</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Sari Nusantara" {...field} disabled={isLoading} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="address"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Alamat Lengkap</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Jl. Raya No. 123, Kota, Provinsi" {...field} disabled={isLoading} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="postalCode"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Kode Pos</FormLabel>
-                          <FormControl>
-                            <Input placeholder="12345" {...field} disabled={isLoading} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                     <div className="grid grid-cols-2 gap-4">
-                        <FormField
+                    {[
+                      { name: 'restaurantName', label: 'Nama Restoran' },
+                      { name: 'address', label: 'Alamat Lengkap' },
+                      { name: 'postalCode', label: 'Kode Pos' },
+                      { name: 'restaurantPhoneNumber', label: 'Nomor Telepon Restoran' },
+                      { name: 'photoUrl', label: 'URL Foto Restoran' },
+                    ].map(({ name, label }) => (
+                      <FormField
+                        key={name}
                         control={form.control}
-                        name="latitude"
+                        name={name as any}
                         render={({ field }) => (
-                            <FormItem>
-                            <FormLabel>Latitude</FormLabel>
+                          <FormItem>
+                            <FormLabel>{label}</FormLabel>
                             <FormControl>
-                                <Input placeholder="-6.208763" {...field} disabled={isLoading} />
+                              <Input placeholder={label} {...field} disabled={isLoading} />
                             </FormControl>
                             <FormMessage />
-                            </FormItem>
+                          </FormItem>
                         )}
-                        />
+                      />
+                    ))}
+                    <div className="grid grid-cols-2 gap-4">
+                      {['latitude', 'longitude'].map((coord) => (
                         <FormField
-                        control={form.control}
-                        name="longitude"
-                        render={({ field }) => (
+                          key={coord}
+                          control={form.control}
+                          name={coord as 'latitude' | 'longitude'}
+                          render={({ field }) => (
                             <FormItem>
-                            <FormLabel>Longitude</FormLabel>
-                            <FormControl>
-                                <Input placeholder="106.845599" {...field} disabled={isLoading} />
-                            </FormControl>
-                            <FormMessage />
+                              <FormLabel>{coord.charAt(0).toUpperCase() + coord.slice(1)}</FormLabel>
+                              <FormControl>
+                                <Input placeholder={coord === 'latitude' ? '-6.2' : '106.8'} {...field} disabled={isLoading} />
+                              </FormControl>
+                              <FormMessage />
                             </FormItem>
-                        )}
+                          )}
                         />
+                      ))}
                     </div>
-                    <FormField
-                      control={form.control}
-                      name="restaurantPhoneNumber"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Nomor Telepon Restoran</FormLabel>
-                          <FormControl>
-                            <Input placeholder="08123456789" {...field} disabled={isLoading} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                     <FormField
-                      control={form.control}
-                      name="photoUrl"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>URL Foto Restoran</FormLabel>
-                          <FormControl>
-                            <Input placeholder="https://contoh.com/resto.png" {...field} disabled={isLoading} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
                   </div>
                 </>
               )}
@@ -358,71 +242,28 @@ export default function RegisterPage() {
                   <Separator />
                   <div className="space-y-2">
                     <h3 className="font-semibold text-lg">Detail Kurir</h3>
-                    <FormField
-                      control={form.control}
-                      name="courierPhoneNumber"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Nomor Telepon Anda</FormLabel>
-                          <FormControl>
-                            <Input placeholder="08987654321" {...field} disabled={isLoading} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="vehicleType"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Jenis Kendaraan</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Motor Vario 150" {...field} disabled={isLoading} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                     <FormField
-                      control={form.control}
-                      name="licensePlate"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Nomor Plat Kendaraan</FormLabel>
-                          <FormControl>
-                            <Input placeholder="B 1234 ABC" {...field} disabled={isLoading} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="vehicleColor"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Warna Kendaraan</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Hitam" {...field} disabled={isLoading} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name="photoUrl"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>URL Foto Profil</FormLabel>
-                          <FormControl>
-                            <Input placeholder="https://contoh.com/foto.png" {...field} disabled={isLoading} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                    {[
+                      { name: 'courierPhoneNumber', label: 'Nomor Telepon Anda' },
+                      { name: 'vehicleType', label: 'Jenis Kendaraan' },
+                      { name: 'licensePlate', label: 'Nomor Plat Kendaraan' },
+                      { name: 'vehicleColor', label: 'Warna Kendaraan' },
+                      { name: 'photoUrl', label: 'URL Foto Profil' },
+                    ].map(({ name, label }) => (
+                      <FormField
+                        key={name}
+                        control={form.control}
+                        name={name as any}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>{label}</FormLabel>
+                            <FormControl>
+                              <Input placeholder={label} {...field} disabled={isLoading} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    ))}
                   </div>
                 </>
               )}
@@ -432,6 +273,7 @@ export default function RegisterPage() {
               </Button>
             </form>
           </Form>
+
           <div className="mt-4 text-center text-sm">
             Sudah punya akun?{' '}
             <Link href="/auth/login" className="underline">
