@@ -29,6 +29,14 @@ import MapLoader from "@/components/map-loader";
 import { suggestRestaurants } from "@/ai/flows/restaurant-suggester-flow";
 import { allRestaurants } from "@/lib/restaurant-data";
 import type { Restaurant } from "@/lib/restaurant-data";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+
 
 type DisplayRestaurant = Restaurant & {
   reason?: string;
@@ -180,7 +188,68 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="featured" className="bg-secondary/50 py-20">
+        <section id="promo-slider" className="bg-secondary/50 py-20">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="font-headline text-3xl font-bold">Penawaran Spesial Untuk Anda</h2>
+              <p className="text-muted-foreground mt-2">Hemat lebih banyak untuk pesanan Anda berikutnya dengan promo eksklusif kami.</p>
+            </div>
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent>
+                {[
+                  {
+                    title: "Diskon Pengguna Baru 50%",
+                    desc: "Pesan sekarang dan dapatkan potongan setengah harga!",
+                    img: "https://placehold.co/1200x500.png",
+                    hint: "special offer",
+                  },
+                  {
+                    title: "Gratis Ongkir Tanpa Batas",
+                    desc: "Nikmati pengiriman gratis ke mana saja, kapan saja.",
+                    img: "https://placehold.co/1200x500.png",
+                    hint: "delivery bike",
+                  },
+                  {
+                    title: "Cashback Hingga 20%",
+                    desc: "Dapatkan cashback instan untuk setiap pesananmu.",
+                    img: "https://placehold.co/1200x500.png",
+                    hint: "money wallet",
+                  },
+                ].map((promo, index) => (
+                  <CarouselItem key={index}>
+                    <Link href="/promotions">
+                      <Card className="overflow-hidden border-0 rounded-lg">
+                        <div className="relative aspect-[2.4/1] w-full">
+                          <Image
+                            src={promo.img}
+                            alt={promo.title}
+                            fill
+                            className="object-cover"
+                            data-ai-hint={promo.hint}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-8">
+                            <h3 className="text-white font-headline text-4xl font-bold">{promo.title}</h3>
+                            <p className="text-white/90 text-xl mt-2">{promo.desc}</p>
+                          </div>
+                        </div>
+                      </Card>
+                    </Link>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden sm:inline-flex" />
+              <CarouselNext className="hidden sm:inline-flex" />
+            </Carousel>
+          </div>
+        </section>
+
+        <section id="featured" className="py-20">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="font-headline text-3xl font-bold">

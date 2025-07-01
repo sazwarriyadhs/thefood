@@ -22,6 +22,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li><Link href="/" className="text-muted-foreground hover:text-primary">Beranda</Link></li>
               <li><Link href="/restaurants" className="text-muted-foreground hover:text-primary">Restoran</Link></li>
+              <li><Link href="/promotions" className="text-muted-foreground hover:text-primary">Promo & Diskon</Link></li>
               <li><Link href="#partner" className="text-muted-foreground hover:text-primary">Jadi Mitra Restoran</Link></li>
               <li><Link href="#courier" className="text-muted-foreground hover:text-primary">Jadi Mitra Kurir</Link></li>
             </ul>
